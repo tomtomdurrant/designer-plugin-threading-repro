@@ -28,7 +28,7 @@ export default defineComponent({
     onMounted(() => {
       const subscription = props.liveUpdate.subscribe(props.objectName, {
         description: 'object.description',
-        uid: 'object.uid',
+        uid: '"0x{:x}".format(object.uid)',
         path: 'object.path.__str__()'
       });
 
