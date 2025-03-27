@@ -3,7 +3,12 @@
     <button class="remove-button" @click="$emit('remove')" aria-label="Remove">
       <img src="../assets/icons/trash.svg" alt="Remove" width="16" height="16" />
     </button>
-    <h3>{{ objectName }}</h3>
+    <h3>{{ objectName }} <code>[{{ type }}]</code></h3>
+    <ResourceInfo
+      v-if="isResource"
+      :liveUpdate="liveUpdate"
+      :objectName="objectName"
+    />
     <table>
       <thead>
         <tr>
@@ -38,9 +43,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import PropertySubscription from './PropertySubscription.vue';
+import ResourceInfo from './ResourceInfo.vue';
 
 export default defineComponent({
-  components: { PropertySubscription },
+  components: { PropertySubscription, ResourceInfo },
   props: {
     liveUpdate: {
       type: Object,
@@ -70,7 +76,14 @@ export default defineComponent({
       subscriptions.value = subscriptions.value.filter(p => p !== property);
     };
 
-    return { subscriptions, property, subscribe, unsubscribe };
+    const { type, isResource } = props.liveUpdate.subscribe(
+      props.objectName, {
+        type: 'type(object).__name__',
+        isResource: 'isinstance(object, Resource)'
+      }
+    );
+
+    return { subscriptions, property, type, isResource, subscribe, unsubscribe };
   }
 });
 </script>
