@@ -1,4 +1,7 @@
 <template>
+  <LiveUpdateOverlay
+    :liveUpdate="liveUpdate"
+  />
   <div>
     <h1>LiveUpdate Subscriptions</h1>
     <SubscriptionManager :liveUpdate="liveUpdate" />
@@ -6,8 +9,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref } from 'vue';
-import { useLiveUpdate } from '@disguise-one/vue-liveupdate';
+import { useLiveUpdate, LiveUpdateOverlay } from '@disguise-one/vue-liveupdate';
 import SubscriptionManager from './components/SubscriptionManager.vue';
 
 export default {
@@ -19,7 +21,8 @@ export default {
     return { liveUpdate };
   },
   components: {
-    SubscriptionManager
+    SubscriptionManager,
+    LiveUpdateOverlay
   }
 };
 </script>
