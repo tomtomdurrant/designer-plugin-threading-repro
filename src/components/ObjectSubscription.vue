@@ -65,7 +65,6 @@ export default defineComponent({
       const p = property.value.trim();
 
       if (!subscriptions.value.includes(p)) {
-        props.liveUpdate.subscribe(props.objectName, { [p]: p });
         subscriptions.value.push(p);
       }
 
