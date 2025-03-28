@@ -10,6 +10,7 @@
       <ObjectSubscription
         :liveUpdate="liveUpdate"
         :objectName="objectName"
+        :autocomplete="autocomplete"
         @remove="() => removeObject(objectName)"
       />
     </div>
@@ -25,11 +26,15 @@ export default defineComponent({
     liveUpdate: {
       type: Object,
       required: true
+    },
+    autocomplete: {
+      type: Function,
+      required: true
     }
   },
   setup(props) {
     const objectName = ref('screen2:surface_1');
-    const objects = ref([]);
+    const objects = ref<string[]>([]);
 
     const addObject = () => {
       if (objects.value.includes(objectName.value)) {
