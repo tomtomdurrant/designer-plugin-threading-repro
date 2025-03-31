@@ -10,7 +10,7 @@ This project is a Vue 3 application designed to test live updates using the `@di
 
 ## Plugin installation
 
-To use the pre-built plugin, download the latest release from [the releases page](releases) and unzip the plugin to the `plugins` folder of your running project. The plugin will be available in the plugin launcher inside Designer, and via `http://localhost/` in the web-based plugin launcher.
+To use the pre-built plugin, download the latest release from [the releases page](https://github.com/disguise-one/Designer_Plugin-Live_Update/releases) and unzip the plugin to the `plugins` folder of your running project. The plugin will be available in the plugin launcher inside Designer, and via `http://localhost/` in the web-based plugin launcher.
 
 ## Prerequisites
 
