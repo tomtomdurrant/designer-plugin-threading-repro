@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { designerPythonLoader } from '@disguise-one/designer-pythonapi/loader'
+import { designerPythonLoader } from '@disguise-one/designer-pythonapi/vite-loader'
 
 export default defineConfig({
   base: './', // Use relative URLs for assets, so it works when hosted in designer
