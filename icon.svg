@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Live Update Icon</title>
+  <!-- Magnifying glass lens -->
+  <circle cx="28" cy="28" r="18" stroke="#000" stroke-width="2" fill="none"/>
+  <!-- Magnifying glass handle -->
+  <line x1="40" y1="40" x2="55" y2="55" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lightning bolt inside the lens -->
+  <polygon points="22,18 34,18 28,28 38,28 24,44 30,34 20,34" fill="#F90"/>
+</svg>

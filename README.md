@@ -9,6 +9,10 @@ This project is a Vue 3 application designed to test live updates using the `@di
 - Built with Vue 3 and Vite for fast development.
 - Autocomplete for property subscriptions
 
+## Plugin installation
+
+To use the pre-built plugin, download the latest release from [the releases page](https://github.com/disguise-one/Designer_Plugin-Live_Update/releases) and unzip the plugin to the `plugins` folder of your running project. The plugin will be available in the plugin launcher inside Designer, and via `http://localhost/` in the web-based plugin launcher.
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/) installed and running.
@@ -35,7 +39,7 @@ cd liveupdate-tester
    ```bash
    npm run serve
    ```
-3. Open your browser and navigate to `http://localhost:5173`.
+3. Open your browser and navigate to `http://localhost:5173?director=localhost:80`. This assumes Designer is running on localhost at port 80.
 
 ## Project Structure
 

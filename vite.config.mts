@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { copyFileSync } from 'fs';
 import { designerPythonLoader } from '@disguise-one/designer-pythonapi/vite-loader'
 
 export default defineConfig({
@@ -10,5 +11,17 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0'
+  },
+  build: {
+    rollupOptions: {
+      plugins: [
+        {
+          name: 'copy-extra-assets',
+          generateBundle() {
+            copyFileSync('icon.svg', 'dist/icon.svg');
+          }
+        }
+      ]
+    }
   }
 });
