@@ -20,17 +20,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, inject, ref } from 'vue';
 import { watchDebounced } from '@vueuse/core';
+import { autocompleteFunction } from '../liveupdate_tester.py';
 
 export default defineComponent({
   props: {
     objectName: {
       type: String,
-      required: true
-    },
-    autocomplete: {
-      type: Function,
       required: true
     }
   },
@@ -39,6 +36,12 @@ export default defineComponent({
     const inputValue = ref('');
     const suggestions = ref<string[]>([]);
     const autocompleteListId = 'autocomplete-list';
+
+    // Access the global autocomplete provided by the app.
+    const autocomplete = inject<autocompleteFunction>('autocomplete');
+    if (!autocomplete) {
+      throw new Error('autocomplete function not provided');
+    }
 
     const emitSubscribe = () => {
       const property = inputValue.value.trim();
@@ -62,7 +65,7 @@ export default defineComponent({
 
     watchDebounced(inputValue, async (newValue) => {
       if (newValue.trim()) {
-        const result = await props.autocomplete(props.objectName, newValue.trim());
+        const result = await autocomplete(props.objectName, newValue.trim());
         suggestions.value = JSON.parse(result.returnValue) || [];
       } else {
         suggestions.value = [];

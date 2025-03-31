@@ -30,7 +30,6 @@
     </table>
     <PropertyInput
       :objectName="objectName"
-      :autocomplete="autocomplete"
       @subscribe="subscribe"
     />
   </div>
@@ -51,10 +50,6 @@ export default defineComponent({
     },
     objectName: {
       type: String,
-      required: true
-    },
-    autocomplete: {
-      type: Function,
       required: true
     }
   },

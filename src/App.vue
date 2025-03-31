@@ -4,11 +4,12 @@
   />
   <div>
     <h1>LiveUpdate Subscriptions</h1>
-    <SubscriptionManager :liveUpdate="liveUpdate" :autocomplete="autocomplete" />
+    <SubscriptionManager :liveUpdate="liveUpdate" />
   </div>
 </template>
 
 <script lang="ts">
+import { provide } from 'vue';
 import { useLiveUpdate, LiveUpdateOverlay } from '@disguise-one/vue-liveupdate';
 import SubscriptionManager from './components/SubscriptionManager.vue';
 import { liveupdate_tester } from './liveupdate_tester.py';
@@ -28,7 +29,9 @@ export default {
       console.error('Error registering LiveUpdate module:', error);
     });
 
-    return { liveUpdate, autocomplete: module.autocomplete };
+    provide('autocomplete', module.autocomplete);
+
+    return { liveUpdate };
   },
   components: {
     SubscriptionManager,

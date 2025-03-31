@@ -10,7 +10,6 @@
       <ObjectSubscription
         :liveUpdate="liveUpdate"
         :objectName="objectName"
-        :autocomplete="autocomplete"
         @remove="() => removeObject(objectName)"
       />
     </div>
@@ -25,10 +24,6 @@ export default defineComponent({
   props: {
     liveUpdate: {
       type: Object,
-      required: true
-    },
-    autocomplete: {
-      type: Function,
       required: true
     }
   },
