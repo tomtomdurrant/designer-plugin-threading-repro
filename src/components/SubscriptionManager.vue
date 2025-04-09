@@ -19,11 +19,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import ObjectSubscription from './ObjectSubscription.vue';
+import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
 
 export default defineComponent({
   props: {
     liveUpdate: {
-      type: Object,
+      type: Object as () => UseLiveUpdateReturn,
       required: true
     }
   },
