@@ -40,12 +40,13 @@ import { defineComponent, ref } from 'vue';
 import PropertySubscription from './PropertySubscription.vue';
 import ResourceInfo from './ResourceInfo.vue';
 import PropertyInput from './PropertyInput.vue';
+import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
 
 export default defineComponent({
   components: { PropertySubscription, ResourceInfo, PropertyInput },
   props: {
     liveUpdate: {
-      type: Object,
+      type: Object as () => UseLiveUpdateReturn,
       required: true
     },
     objectName: {
@@ -53,6 +54,7 @@ export default defineComponent({
       required: true
     }
   },
+  emits: ['remove'],
   setup(props) {
     const subscriptions = ref<string[]>([]);
 
