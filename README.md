@@ -23,8 +23,8 @@ To use the pre-built plugin, download the latest release from [the releases page
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/liveupdate-tester.git
-cd liveupdate-tester
+git clone https://github.com/disguise-one/Designer_Plugin-Live_Update.git
+cd Designer_Plugin-Live_Update
 ```
 
 ### Open in VS Code
