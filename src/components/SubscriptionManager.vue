@@ -20,6 +20,7 @@
 import { defineComponent, ref } from 'vue';
 import ObjectSubscription from './ObjectSubscription.vue';
 import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
+import { useStorage } from '@vueuse/core';
 
 export default defineComponent({
   props: {
@@ -30,7 +31,7 @@ export default defineComponent({
   },
   setup(props) {
     const objectName = ref('screen2:surface_1');
-    const objects = ref<string[]>([]);
+    const objects = useStorage<string[]>('disguise-liveupdate-tester-subscriptionmanager', []);
 
     const addObject = () => {
       if (objects.value.includes(objectName.value)) {

@@ -41,6 +41,7 @@ import PropertySubscription from './PropertySubscription.vue';
 import ResourceInfo from './ResourceInfo.vue';
 import PropertyInput from './PropertyInput.vue';
 import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
+import { useStorage } from '@vueuse/core';
 
 export default defineComponent({
   components: { PropertySubscription, ResourceInfo, PropertyInput },
@@ -56,7 +57,7 @@ export default defineComponent({
   },
   emits: ['remove'],
   setup(props) {
-    const subscriptions = ref<string[]>([]);
+    const subscriptions = useStorage<string[]>(`disguise-liveupdate-tester-objectsubscription-${props.objectName}`, []);
 
     const subscribe = (property: string) => {
       const p = property.trim();
