@@ -9,7 +9,8 @@
   "dependencies": {
     "@disguise-one/designer-pythonapi": "github:disguise-one/designer-pythonapi",
     "@disguise-one/vue-liveupdate": "github:disguise-one/vue-liveupdate",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-json-pretty": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.14",
