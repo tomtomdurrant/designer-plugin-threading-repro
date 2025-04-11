@@ -50,7 +50,6 @@ td {
 }
 td:first-child, td:last-child {
   width: 1%;
-  white-space: nowrap;
 }
 td:last-child {
   text-align: center;
