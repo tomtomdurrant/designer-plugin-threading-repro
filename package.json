@@ -3,7 +3,8 @@
   "version": "1.1.0",
   "scripts": {
     "serve": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "release": "vite build && sh scripts/release.sh $npm_package_version"
   },
   "dependencies": {
     "@disguise-one/designer-pythonapi": "github:disguise-one/designer-pythonapi",
