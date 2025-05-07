@@ -28,15 +28,10 @@
         />
       </tbody>
     </table>
-    <div>
-      <input
-        type="text"
-        v-model="property"
-        placeholder="Enter property to subscribe"
-        @keyup.enter="subscribe"
-      />
-      <button @click="subscribe" style="margin-left: 10px;">Subscribe</button>
-    </div>
+    <PropertyInput
+      :objectName="objectName"
+      @subscribe="subscribe"
+    />
   </div>
 </template>
 
@@ -44,12 +39,15 @@
 import { defineComponent, ref } from 'vue';
 import PropertySubscription from './PropertySubscription.vue';
 import ResourceInfo from './ResourceInfo.vue';
+import PropertyInput from './PropertyInput.vue';
+import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
+import { useStorage } from '@vueuse/core';
 
 export default defineComponent({
-  components: { PropertySubscription, ResourceInfo },
+  components: { PropertySubscription, ResourceInfo, PropertyInput },
   props: {
     liveUpdate: {
-      type: Object,
+      type: Object as () => UseLiveUpdateReturn,
       required: true
     },
     objectName: {
@@ -57,18 +55,16 @@ export default defineComponent({
       required: true
     }
   },
+  emits: ['remove'],
   setup(props) {
-    const subscriptions = ref<string[]>([]);
-    const property = ref('');
+    const subscriptions = useStorage<string[]>(`disguise-liveupdate-tester-objectsubscription-${props.objectName}`, []);
 
-    const subscribe = () => {
-      const p = property.value.trim();
+    const subscribe = (property: string) => {
+      const p = property.trim();
 
       if (!subscriptions.value.includes(p)) {
         subscriptions.value.push(p);
       }
-
-      property.value = '';
     };
 
     const unsubscribe = (property: string) => {
@@ -77,12 +73,12 @@ export default defineComponent({
 
     const { type, isResource } = props.liveUpdate.subscribe(
       props.objectName, {
-        type: 'type(object).__name__',
+        type: 'type(object)',
         isResource: 'isinstance(object, Resource)'
       }
     );
 
-    return { subscriptions, property, type, isResource, subscribe, unsubscribe };
+    return { subscriptions, type, isResource, subscribe, unsubscribe };
   }
 });
 </script>

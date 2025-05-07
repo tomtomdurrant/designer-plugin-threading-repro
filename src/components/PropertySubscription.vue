@@ -1,9 +1,9 @@
 <template>
-  <tr>
+  <tr ref="row">
     <td>{{ property }}</td>
-    <td>{{ value }}</td>
+    <td><vue-json-pretty v-model:data="value" editable :show-double-quotes=false /></td>
     <td>
-      <button @click="unsubscribe" aria-label="Unsubscribe">
+      <button @click="$emit('unsubscribe', property)" aria-label="Unsubscribe">
         <img src="../assets/icons/trash.svg" alt="Unsubscribe" width="16" height="16" />
       </button>
     </td>
@@ -11,12 +11,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, useTemplateRef } from 'vue';
+import { useSubscriptionVisibility } from '@disguise-one/vue-liveupdate';
+import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
+import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 
 export default defineComponent({
   props: {
     liveUpdate: {
-      type: Object,
+      type: Object as () => UseLiveUpdateReturn,
       required: true
     },
     objectName: {
@@ -28,14 +32,17 @@ export default defineComponent({
       required: true
     },
   },
+  components: {
+    VueJsonPretty,
+  },
   emits: ['unsubscribe'],
-  setup(props, { emit }) {
-    const unsubscribe = () => {
-      emit('unsubscribe', props.property);
-    };
+  setup(props) {
+    const row = useTemplateRef<HTMLElement>('row');
 
     const subscription = props.liveUpdate.subscribe(props.objectName, { [props.property]: props.property });
-    return { value: subscription[props.property], unsubscribe };
+    useSubscriptionVisibility(row, subscription);
+
+    return { value: subscription[props.property] };
   }
 });
 </script>
@@ -48,7 +55,6 @@ td {
 }
 td:first-child, td:last-child {
   width: 1%;
-  white-space: nowrap;
 }
 td:last-child {
   text-align: center;

@@ -1,5 +1,5 @@
 <template>
-  <div class="resource-info">
+  <div ref="resourceInfo" class="resource-info">
     <p><strong>Description:</strong> {{ description }}</p>
     <p><strong>UID:</strong> {{ uid }}</p>
     <p><strong>Path:</strong> {{ path }}</p>
@@ -7,12 +7,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, useTemplateRef } from 'vue';
+import type { UseLiveUpdateReturn } from '@disguise-one/vue-liveupdate';
+import { useSubscriptionVisibility } from '@disguise-one/vue-liveupdate';
 
 export default defineComponent({
   props: {
     liveUpdate: {
-      type: Object,
+      type: Object as () => UseLiveUpdateReturn,
       required: true
     },
     objectName: {
@@ -21,23 +23,20 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const description = ref('');
-    const uid = ref('');
-    const path = ref('');
+    const resourceInfo = useTemplateRef<HTMLElement>('resourceInfo');
 
-    onMounted(() => {
-      const subscription = props.liveUpdate.subscribe(props.objectName, {
-        description: 'object.description',
-        uid: '"0x{:x}".format(object.uid)',
-        path: 'object.path.__str__()'
-      });
-
-      description.value = subscription.description;
-      uid.value = subscription.uid;
-      path.value = subscription.path;
+    const subscription = props.liveUpdate.subscribe(props.objectName, {
+      description: 'object.description',
+      uid: '"0x{:x}".format(object.uid)',
+      path: 'str(object.path)'
     });
+    useSubscriptionVisibility(resourceInfo, subscription);
 
-    return { description, uid, path };
+    return {
+      description: subscription.description,
+      uid: subscription.uid,
+      path: subscription.path
+    };
   }
 });
 </script>
