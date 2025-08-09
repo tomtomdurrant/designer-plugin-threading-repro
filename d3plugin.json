@@ -1,4 +1,4 @@
 {
-    "name": "Live Update tester",
+    "name": "Repro for threading",
     "requiresSession": true
 }

@@ -2,6 +2,8 @@ from d3 import Expression
 from rlcompleter import Completer
 import subscription_manager
 
+import threading
+
 __all__ = ['autocomplete']
 
 def autocomplete(objExpr, propPath):

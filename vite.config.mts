@@ -18,8 +18,8 @@ export default defineConfig({
         {
           name: 'copy-extra-assets',
           generateBundle() {
-            copyFileSync('icon.svg', 'dist/icon.svg');
-            copyFileSync('d3plugin.json', 'dist/d3plugin.json');
+            // copyFileSync('icon.svg', 'dist/icon.svg');
+            // copyFileSync('d3plugin.json', 'dist/d3plugin.json');
           }
         }
       ]
