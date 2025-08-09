@@ -1,0 +1,37 @@
+2025-08-09T11:40:57.417+01:00: PythonHandler::registerModule received:  liveupdate_tester
+2025-08-09T11:40:57.428+01:00: !!!!! Failed to register plugin: liveupdate_tester
+{
+Error code: 0, Error message: class PythonException in 'C:\blip\dev\d3python\pythonobject.cpp' (line 32):
+	
+Traceback (most recent call last):
+
+  File "C:\blip\dev\scripts\d3pluginutils\register.py", line 37, in registerModule
+
+  File "C:\blip\d3_deps\.conan\data\Python\2.7.18_n\d3\stable\package\6cc50b139b9c3d27b3e9042d5f5372d327b3a9f7\Python-2.7.18_x64\lib\importlib\__init__.py", line 37, in import_module
+
+  File "C:\blip\dev\scripts\d3pluginutils\register.py", line 25, in load_module
+
+  File "<string>", line 5, in <module>
+
+  File "C:\blip\dev\scripts\restrictedscope\import_hook.py", line 84, in load_module
+
+ImportError: Cannot import module threading
+.
+
+}
+2025-08-09T11:40:57.440+01:00: [WebViewHandler] Loaded http://zambezi-metis.local/projects/common/plugins/repro-plugin/?director=zambezi-metis.local:80: 200
+2025-08-09T11:40:57.444+01:00: [WebViewHandler] Console : Error registering LiveUpdate module: [object Object], http://zambezi-metis.local/projects/common/plugins/repro-plugin/assets/index-DdWsAofE.js:91
+2025-08-09T11:41:00.000+01:00: ---------------------------------- process mem = 1688 Mb used; video mem = 620 Mb used; ; prefetcher = 0 dropped, 0 missed
+2025-08-09T11:41:00.000+01:00: --------------- default ------- track = track 1; timecode = 00:00:00.00; section = no section
+2025-08-09T11:41:00.000+01:00: ---------------------------------- uptime = 0 weeks, 0 days and 00:01:26
+2025-08-09T11:41:01.064+01:00: d3 lost focus - Current foreground window: C:\Windows\explorer.exe, class: ForegroundStaging, could not get window text: Error 0x0: The operation completed successfully.
+2025-08-09T11:41:01.083+01:00: Machine status changed, category: Output status: Framelock changed from Ready / OK to Warning / Not foreground window
+2025-08-09T11:41:05.723+01:00: d3 gained focus
+2025-08-09T11:41:05.801+01:00: Machine status changed, category: Output status: Framelock changed from Warning / Not foreground window to Ready / OK
+2025-08-09T11:41:09.333+01:00: py> import threading
+2025-08-09T11:41:13.082+01:00: py> threading
+2025-08-09T11:41:13.082+01:00: <module 'threading' from 'C:\Program Files\d3 Production Suite\build\msvc\lib\threading.pyc'>
+py> dir(threading)
+2025-08-09T11:41:22.231+01:00: ['BoundedSemaphore', 'Condition', 'Event', 'Lock', 'RLock', 'Semaphore', 'Thread', 'ThreadError', 'Timer', '_BoundedSemaphore', '_Condition', '_DummyThread', '_Event', '_MainThread', '_RLock', '_Semaphore', '_Timer', '_VERBOSE', '_Verbose', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '_active', '_active_limbo_lock', '_after_fork', '_allocate_lock', '_count', '_counter', '_deque', '_enumerate', '_format_exc', '_get_ident', '_limbo', '_newname', '_pickSomeNonDaemonThread', '_profile_hook', '_shutdown', '_sleep', '_start_new_thread', '_sys', '_test', '_time', '_trace_hook', 'activeCount', 'active_count', 'currentThread', 'current_thread', 'enumerate', 'local', 'setprofile', 'settrace', 'stack_size', 'warnings']
+d3 lost focus - Current foreground window: C:\Windows\explorer.exe, class: ForegroundStaging, could not get window text: Error 0x0: The operation completed successfully.
+2025-08-09T11:41:30.780+01:00: Machine status changed, category: Output status: Framelock changed from Ready / OK to Warning / Not foreground window
